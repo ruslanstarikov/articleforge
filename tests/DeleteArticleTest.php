@@ -3,27 +3,25 @@ declare(strict_types=1);
 namespace Tests;
 
 use Ruslanstarikov\Articleforge\ArticleForge;
-use Ruslanstarikov\Articleforge\Response\GetApiProgressResponse;
+use Ruslanstarikov\Articleforge\Response\DeleteArticleResponse;
 
-class GetApiProgressTest extends BaseArticleForgeApiTest
+class DeleteArticleTest extends BaseArticleForgeApiTest
 {
     public function setUp(): void
     {
         parent::setUp();
     }
 
-    public function testApiProgressMustReturnValidResult()
+    public function testDeleteArticleMustReturnValidResponse()
     {
         $apiResponse = [
-            'api_status'   => 200,
-            'progress' => 0.45,
-            'status'    => "Success",
+            'status'    => "OK",
         ];
         $this->articleForgeClient->method('callApi')
             ->willReturn($apiResponse);
         $articleForge = new ArticleForge($this->apiKey, $this->articleForgeClient);
-        $articleRequest = $articleForge->getApiProgress(2);
-        $expectedResult = new GetApiProgressResponse($apiResponse);
+        $articleRequest = $articleForge->deleteArticle(2);
+        $expectedResult = new DeleteArticleResponse($apiResponse);
 
         $this->assertEquals($expectedResult, $articleRequest);
     }
