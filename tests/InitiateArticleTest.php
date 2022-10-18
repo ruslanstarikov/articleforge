@@ -78,7 +78,7 @@ class InitiateArticleTest extends BaseArticleForgeApiTest
         $articleRequest = $articleForge->initiateArticle($articleTitle)->toArray();
         $expectedResult = [
             "error" => "Invalid email / API key pair",
-            "ref_key" => null,
+            "refKey" => null,
             "status" => "Fail"
         ];
 
@@ -104,7 +104,7 @@ class InitiateArticleTest extends BaseArticleForgeApiTest
         $articleRequest = $articleForge->initiateArticle($articleTitle)->toArray();
         $expectedResult = [
             "error" => "Article Forge is currently processing the maximum number of concurrent requests",
-            "ref_key" => null,
+            "refKey" => null,
             "status" => "Fail"
         ];
 

@@ -6,7 +6,9 @@ namespace Ruslanstarikov\Articleforge\Response;
 class InitiateArticleResponse
 {
     /** @var string */
-    private $refKey, $status, $errorMessage;
+    private $status, $errorMessage;
+    /** @var int */
+    private $refKey;
 
     public function __construct(array $responseArray)
     {
@@ -25,17 +27,17 @@ class InitiateArticleResponse
     }
 
     /**
-     * @return null|string
+     * @return null|int
      */
-    public function getRefKey(): ?string
+    public function getRefKey(): ?int
     {
         return $this->refKey;
     }
 
     /**
-     * @param string|null $refKey
+     * @param int|null $refKey
      */
-    public function setRefKey(?string $refKey): void
+    public function setRefKey(?int $refKey): void
     {
         $this->refKey = $refKey;
     }

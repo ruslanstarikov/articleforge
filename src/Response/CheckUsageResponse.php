@@ -7,9 +7,9 @@ namespace Ruslanstarikov\Articleforge\Response;
 class CheckUsageResponse
 {
     /** @var string|null */
-    private $status, $monthlyWordsRemaining, $errorMessage;
+    private $status, $errorMessage;
     /** @var int|null  */
-    private $apiRequests, $prepaidWordsAvailable;
+    private $apiRequests, $monthlyWordsRemaining, $prepaidWordsAvailable;
     /** @var bool|null */
     private $overuseProtection;
     /** @var float|null */
@@ -20,7 +20,9 @@ class CheckUsageResponse
         $this->setStatus($response['status']);
         $apiRequests = $response['API Requests'] ?? null;
         $monthlyWordsRemaining = $response['Monthly Words Remaining'] ?? null;
-        $overUseProtection = $response['Overuse Protection'] ?? null === 'YES';
+        $overUseProtection = null;
+        if(array_key_exists('Overuse Protection', $response))
+            $overUseProtection = $response['Overuse Protection'] === 'YES';
         $prepaidAmount = $response['Prepaid Amount'] ?? null;
         $prepaidWordsAvailable = $response['Prepaid Words Available'] ?? null;
         $overageUsageCharge = $response['Overage Usage Charge'] ?? null;
@@ -64,17 +66,17 @@ class CheckUsageResponse
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getMonthlyWordsRemaining(): ?string
+    public function getMonthlyWordsRemaining(): ?int
     {
         return $this->monthlyWordsRemaining;
     }
 
     /**
-     * @param string|null $monthlyWordsRemaining
+     * @param int|null $monthlyWordsRemaining
      */
-    public function setMonthlyWordsRemaining(?string $monthlyWordsRemaining): void
+    public function setMonthlyWordsRemaining(?int $monthlyWordsRemaining): void
     {
         $this->monthlyWordsRemaining = $monthlyWordsRemaining;
     }
