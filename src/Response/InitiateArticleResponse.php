@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Ruslanstarikov\Articleforge\Response;
 
@@ -17,7 +18,7 @@ class InitiateArticleResponse
     public function toArray(): array
     {
         return [
-            'ref_key' => $this->getRefKey(),
+            'refKey' => $this->getRefKey(),
             'status' => $this->getStatus(),
             'error' => $this->getErrorMessage()
         ];

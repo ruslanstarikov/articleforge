@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ruslanstarikov\Articleforge\Response;
 
 class CheckUsageResponse
@@ -24,7 +26,7 @@ class CheckUsageResponse
         $overageUsageCharge = $response['Overage Usage Charge'] ?? null;
 
         $this->setApiRequests((int)$apiRequests);
-        $this->setMonthlyWordsRemaining((int)$monthlyWordsRemaining);
+        $this->setMonthlyWordsRemaining($monthlyWordsRemaining);
         $this->setOveruseProtection($overUseProtection);
         $this->setPrepaidAmount((float)$prepaidAmount);
         $this->setPrepaidWordsAvailable((int)$prepaidWordsAvailable);

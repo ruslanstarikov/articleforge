@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace Ruslanstarikov\Articleforge\Response;
+
 class ArticleListResponse
 {
     /** @var Article[] */
@@ -35,7 +37,7 @@ class ArticleListResponse
         $articles = $this->getData();
         $arrArticles = [];
         foreach($articles as $article) {
-            $arrArticles[] = $article->jsonSerialize();
+            $arrArticles[] = $article->toArray();
         }
         return [
             'data' => $arrArticles,

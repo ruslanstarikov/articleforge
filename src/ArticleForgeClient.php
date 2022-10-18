@@ -35,7 +35,7 @@ class ArticleForgeClient
         try {
             $response = $this->client->post($endpoint, [
                 'form_params' => $payload,
-                'headers' => [
+                'headers' => [  
                     'Content-Type' => 'application/x-www-form-urlencoded',
                 ]
             ]);

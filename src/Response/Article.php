@@ -1,6 +1,7 @@
 <?php
-
+declare(strict_types=1);
 namespace Ruslanstarikov\Articleforge\Response;
+
 use DateTimeImmutable;
 
 class Article
