@@ -23,7 +23,7 @@ class ArticleForgeClient
         else {
             $this->client = new Client([
                 'base_uri' => self::BASE_URL,
-                'timeout' => 2.0,
+                'timeout' => 20.0,
             ]);
         }
     }
