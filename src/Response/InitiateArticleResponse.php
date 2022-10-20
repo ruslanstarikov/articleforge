@@ -27,7 +27,7 @@ class InitiateArticleResponse
     }
 
     /**
-     * @return null|int
+     * @return int|null
      */
     public function getRefKey(): ?int
     {
@@ -59,9 +59,9 @@ class InitiateArticleResponse
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getErrorMessage(): string
+    public function getErrorMessage(): ?string
     {
         return $this->errorMessage;
     }
