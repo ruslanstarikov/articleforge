@@ -79,9 +79,9 @@ class GetApiProgressResponse
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getErrorMessage(): string
+    public function getErrorMessage(): ?string
     {
         return $this->errorMessage;
     }
