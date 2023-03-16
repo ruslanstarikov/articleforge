@@ -7,13 +7,13 @@ use JsonSerializable;
 class InitiateArticleRequest implements JsonSerializable
 {
     /** @var string|null */
-    private $keyword, $length;
+    private $keyword, $length, $instructions;
 
     /** @var array|null */
-    private $subKeywords, $sectionHeadings, $autoLinks;
+    private $subKeywords, $sectionHeadings, $autoLinks, $excludedTopics;
 
     /** @var bool|null  */
-    private $title, $turingSpinner, $useSectionHeading;
+    private $title, $turingSpinner, $useSectionHeading, $useEvade;
 
     /** @var float|null */
     private $image, $video;
@@ -35,6 +35,9 @@ class InitiateArticleRequest implements JsonSerializable
      * @param bool|null $useSectionHeading
      * @param array|null $sectionHeadings
      * @param int|null $rewriteNum
+     * @param array|null $excludedTopics
+     * @param string|null $instructions
+     * @param bool|null $useEvade
      */
     public function __construct(
         string $keyword,
@@ -50,6 +53,9 @@ class InitiateArticleRequest implements JsonSerializable
         ?bool $useSectionHeading = false,
         ?array $sectionHeadings = [],
         ?int $rewriteNum = null,
+        ?array $excludedTopics = [],
+        ?string $instructions = null,
+        ?bool $useEvade = false,
     )
     {
         $this->setKeyword($keyword);
@@ -65,6 +71,9 @@ class InitiateArticleRequest implements JsonSerializable
         $this->setUseSectionHeading($useSectionHeading);
         $this->setSectionHeadings($sectionHeadings);
         $this->setRewriteNum($rewriteNum);
+        $this->setExcludedTopics($excludedTopics);
+        $this->setInstructions($instructions);
+        $this->setUseEvade($useEvade);
     }
 
     public function jsonSerialize(): mixed
@@ -106,6 +115,12 @@ class InitiateArticleRequest implements JsonSerializable
             $payload['use_section_heading'] = (int)$this->getUseSectionHeading();
         if(!empty($this->getSectionHeadings())) {
             $payload['section_headinds'] = implode(',', $this->getSectionHeadings());
+        if(!empty($this->getExcludedTopics()))
+            $payload['excluded_topics'] = implode(',', $this->getExcludedTopics());
+        if(!empty($this->getInstructions()))
+            $payload['instructions'] = $this->getInstructions();
+        if(!empty($this->getUseEvade()))
+            $payload['use_evade'] = (int)$this->getUseEvade();
         }
 
         return $payload;
@@ -317,5 +332,53 @@ class InitiateArticleRequest implements JsonSerializable
     public function setUniqueness(?int $uniqueness): void
     {
         $this->uniqueness = $uniqueness;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getExcludedTopics(): ?array
+    {
+        return $this->excludedTopics;
+    }
+
+    /**
+     * @param array|null $excludedTopics
+     */
+    public function setExcludedTopics(?array $excludedTopics): void
+    {
+        $this->excludedTopics = $excludedTopics;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInstructions(): ?string
+    {
+        return $this->instructions;
+    }
+
+    /**
+     * @param string|null $instructions
+     */
+    public function setInstructions(?string $instructions): void
+    {
+        $this->instructions = $instructions;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getUseEvade(): ?bool
+    {
+        return $this->useEvade;
+    }
+
+    /**
+     * @param bool|null $useEvade
+     */
+    public function setUseEvade(?bool $useEvade): void
+    {
+        $this->useEvade = $useEvade;
     }
 }
