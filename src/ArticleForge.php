@@ -67,11 +67,15 @@ class ArticleForge
         int $uniqueness = null,
         bool $useSectionHeading = false,
         array $sectionHeadings = [],
-        int $rewriteNum = 0 ) : InitiateArticleResponse
+        int $rewriteNum = 0,
+        array $excludedTopics = null,
+        string $instructions = null,
+        bool $useEvade = false) : InitiateArticleResponse
     {
         $endpoint = 'api/initiate_article';
         $initiateArticleRequest = new InitiateArticleRequest($keyword, $subKeywords, $length, $title, $image, $video, $autoLinks,
-            $turingSpinner, $quality, $uniqueness, $useSectionHeading, $sectionHeadings, $rewriteNum );
+            $turingSpinner, $quality, $uniqueness, $useSectionHeading, $sectionHeadings, $rewriteNum, $excludedTopics,
+            $instructions, $useEvade );
         $payload = $initiateArticleRequest->jsonSerialize();
         $response = $this->client->callApi($endpoint, $payload);
 

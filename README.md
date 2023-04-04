@@ -25,7 +25,7 @@ $referenceKey = $initArticleResponse->toArray()['refKey'];
 ```
 ## Official Documentation
 Official API documentation can be accessed here: https://af.articleforge.com/api_info 
-[Last accessed on 05/10/2022]
+[Last accessed on 09/02/2023]
 
 ## Methods
 ### checkUsage
@@ -119,6 +119,12 @@ useSectionHeading - boolean, optional
 sectionHeadings - array of strings, optional
 
 rewriteNum - integer, optional
+
+excludedTopics - array, optional
+
+instructions - string, optional
+
+seEvade - boolean, optional
 
 Example:
 ```php
